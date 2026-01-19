@@ -17,13 +17,11 @@ from fastapi.middleware.cors import CORSMiddleware  # For handling cross-origin 
 from pydantic import BaseModel  # For request/response validation
 import uvicorn  # ASGI server for running the FastAPI application
 
-# Optional dependency: FAISS for efficient vector similarity search
-# If not installed, the system will fall back to basic search
+# Optional dependency: FAISS removed for Vercel size limits
+# Using pure Numpy for vector operations instead
 try:
-    import faiss
     import numpy as np
 except ImportError:
-    faiss = None
     np = None
 
 # Optional dependency: PyPDF2 for extracting text from PDF documents
@@ -353,26 +351,18 @@ class VectorStore:
     """
     In-memory vector database for storing and searching document embeddings.
     
-    Uses FAISS (Facebook AI Similarity Search) for efficient similarity search.
-    If FAISS is unavailable, falls back to returning first K documents.
-    
-    The vector store maintains:
-    - A list of Document objects with their content and metadata
-    - A FAISS index for fast similarity search on embeddings
+    Uses Numpy for cosine similarity search.
+    Optimized for Vercel serverless environment (under 250MB limit).
     """
     def __init__(self, dimension: int = 384):
         """
         Initialize the vector store.
         
         Args:
-            dimension: Dimensionality of embedding vectors (must match embedder)
+            dimension: Dimensionality of embedding vectors
         """
         self.dimension = dimension
         self.documents: List[Document] = []
-        self.index = None
-        # Create FAISS index if available (IndexFlatIP = Inner Product search)
-        if faiss and np:
-            self.index = faiss.IndexFlatIP(dimension)
     
     def add_documents(self, documents: List[Document]):
         """
@@ -382,10 +372,6 @@ class VectorStore:
             documents: List of Document objects with embeddings
         """
         self.documents.extend(documents)
-        # Add embeddings to FAISS index for fast search
-        if self.index and faiss and np:
-            embeddings = np.array([doc.embedding for doc in documents], dtype='float32')
-            self.index.add(embeddings)
     
     def search(self, query_embedding: List[float], top_k: int = 5) -> List[RetrievalResult]:
         """
@@ -401,23 +387,45 @@ class VectorStore:
         if not self.documents:
             return []
         
-        # Use FAISS for efficient similarity search
-        if self.index and faiss and np:
-            query_vec = np.array([query_embedding], dtype='float32')
-            # Search returns (scores, indices) of top_k most similar vectors
-            scores, indices = self.index.search(query_vec, min(top_k, len(self.documents)))
+        # Use Numpy for cosine similarity
+        if np:
+            # Prepare query vector
+            query_vec = np.array(query_embedding, dtype='float32')
+            query_norm = np.linalg.norm(query_vec)
+            if query_norm > 0:
+                query_vec = query_vec / query_norm
+                
+            # Prepare document vectors
+            doc_embeddings = np.array([doc.embedding for doc in self.documents], dtype='float32')
+            
+            # Normalize document vectors (if not already)
+            # Note: We do this on the fly for simplicity, but could pre-calculate
+            doc_norms = np.linalg.norm(doc_embeddings, axis=1, keepdims=True)
+            # Avoid division by zero
+            doc_norms[doc_norms == 0] = 1.0
+            doc_embeddings_norm = doc_embeddings / doc_norms
+            
+            # Calculate cosine similarity (dot product of normalized vectors)
+            # valid for normalized vectors: cosine_sim = A . B
+            scores = np.dot(doc_embeddings_norm, query_vec)
+            
+            # Get top_k indices
+            # argsort returns indices that sort the array, we take last top_k and reverse
+            top_indices = np.argsort(scores)[-top_k:][::-1]
+            
             results = []
-            for score, idx in zip(scores[0], indices[0]):
+            for idx in top_indices:
                 if idx < len(self.documents):
                     doc = self.documents[idx]
                     results.append(RetrievalResult(
                         document_id=doc.id,
                         content=doc.content,
-                        score=float(score),
+                        score=float(scores[idx]),
                         metadata=doc.metadata
                     ))
             return results
-        # Fallback: return first K documents with dummy scores
+            
+        # Fallback if numpy is somehow missing (extremely unlikely given requirements.txt)
         else:
             return [
                 RetrievalResult(
