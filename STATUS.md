@@ -105,7 +105,7 @@ You'll see:
 
 ### API Configuration
 ```
-Model: gemini-2.0-flash
+Model: gemini-2.5-flash
 API Key: AIzaSyCRTE6l2aSMUAEwIV6jfA_HJM7QVcAXzag
 Embedding Model: text-embedding-004
 Dimension: 768
