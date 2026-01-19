@@ -1108,6 +1108,15 @@ async def ask_question(request: AskRequest):
         raise HTTPException(status_code=500, detail=f"Question processing failed: {str(e)}")
 
 
+
+@app.get("/")
+async def root():
+    """
+    Root endpoint to verify the API is running.
+    """
+    return {"message": "AI Legal Assistant API is running", "status": "online"}
+
+
 @app.get("/health")
 async def health_check():
     """
