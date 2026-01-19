@@ -1,4 +1,5 @@
 # 🎓 Agentic AI Legal Assistant
+[![Vercel Release](https://vercel.com/button)](https://vercel.com/new)
 
 A professional web application combining **Agentic RAG (Retrieval-Augmented Generation)** with a modern React frontend for educational legal research.
 
