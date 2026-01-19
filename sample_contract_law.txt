@@ -1,0 +1,114 @@
+# Sample Legal Document - Contract Law Basics
+
+## Formation of Contracts
+
+A valid contract requires the following essential elements:
+
+### 1. Offer
+An offer is a definite proposal made by one party (the offeror) to another party (the offeree), indicating a willingness to enter into a contract on specific terms. The offer must be communicated to the offeree and must be sufficiently certain and definite.
+
+### 2. Acceptance
+Acceptance is the unqualified agreement to all the terms of the offer. The acceptance must mirror the terms of the offer exactly (the "mirror image rule"). Any variation in the terms constitutes a counter-offer rather than an acceptance.
+
+### 3. Consideration
+Consideration is something of value exchanged between the parties. It can be:
+- A promise to do something
+- A promise to refrain from doing something
+- An actual performance
+- An actual forbearance
+
+Both parties must provide consideration for a contract to be enforceable. Past consideration is generally not valid.
+
+### 4. Intention to Create Legal Relations
+The parties must intend that their agreement will be legally binding. In commercial agreements, this intention is presumed. In social or domestic agreements, there is a presumption against legal intent.
+
+### 5. Capacity
+The parties must have the legal capacity to enter into a contract. The following may lack capacity:
+- Minors (persons under 18 years of age)
+- Persons with mental incapacity
+- Intoxicated persons (at the time of contract formation)
+
+### 6. Legality
+The purpose and subject matter of the contract must be legal. Contracts for illegal purposes are void and unenforceable.
+
+## Breach of Contract
+
+A breach of contract occurs when one party fails to perform their obligations under the contract without lawful excuse. Breaches can be classified as:
+
+### Material Breach
+A material breach is a substantial failure to perform that defeats the purpose of the contract. The non-breaching party may:
+- Terminate the contract
+- Claim damages
+- Seek specific performance
+
+### Minor Breach
+A minor breach is a partial or less significant failure to perform. The non-breaching party:
+- Cannot terminate the contract
+- May claim damages for the loss suffered
+
+## Remedies for Breach
+
+### 1. Damages
+Monetary compensation for losses suffered due to the breach. Types include:
+- **Compensatory damages**: To put the injured party in the position they would have been in had the contract been performed
+- **Consequential damages**: For losses that flow naturally from the breach
+- **Punitive damages**: Rarely awarded in contract cases
+
+### 2. Specific Performance
+A court order requiring the breaching party to perform their contractual obligations. This remedy is available when:
+- Damages are inadequate
+- The subject matter is unique (e.g., real estate, rare goods)
+
+### 3. Rescission
+Cancellation of the contract, returning both parties to their pre-contractual positions.
+
+### 4. Reformation
+Court modification of the contract to reflect the true intentions of the parties.
+
+## Defenses to Contract Enforcement
+
+### Mistake
+- **Mutual mistake**: Both parties are mistaken about a material fact
+- **Unilateral mistake**: Generally not a defense unless the other party knew or should have known of the mistake
+
+### Misrepresentation
+False statement of material fact that induces a party to enter into the contract.
+
+### Duress
+Improper threats that deprive a party of meaningful choice.
+
+### Undue Influence
+Unfair persuasion of a party who is under the domination of the influencing party.
+
+### Unconscionability
+Contract terms that are so one-sided as to be oppressive or unfair.
+
+### Illegality
+Contracts for illegal purposes are void.
+
+### Statute of Frauds
+Certain contracts must be in writing to be enforceable:
+- Contracts for the sale of land
+- Contracts that cannot be performed within one year
+- Contracts for the sale of goods over a certain value
+- Promises to pay another's debt
+
+## Discharge of Contractual Obligations
+
+Contractual obligations may be discharged by:
+
+1. **Performance**: Complete fulfillment of contractual obligations
+2. **Agreement**: Mutual agreement to terminate or modify
+3. **Frustration**: Supervening event makes performance impossible or radically different
+4. **Breach**: Material breach by one party discharges the other party's obligations
+
+## Third-Party Rights
+
+Generally, only parties to a contract have rights and obligations under it (privity of contract). Exceptions include:
+- Assignment of rights
+- Delegation of duties
+- Third-party beneficiary contracts
+
+---
+
+**Disclaimer**: This document is for educational purposes only and does not constitute legal advice. For specific legal matters, consult a qualified attorney.
