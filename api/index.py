@@ -964,7 +964,7 @@ class DocumentProcessor:
 # ============================================================================
 # REST API for the Legal Assistant system
 
-app = FastAPI(title="Agentic RAG Legal Assistant")
+app = FastAPI(title="Agentic RAG Legal Assistant", root_path="/api")
 
 # Configure CORS (Cross-Origin Resource Sharing) to allow frontend requests
 # This allows the React frontend running on localhost:5173 to communicate with the backend
